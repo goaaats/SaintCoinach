@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Tharga.Toolkit.Console.Command.Base;
-
 using SaintCoinach.Ex;
+using Tharga.Toolkit.Console.Commands.Base;
 
 #pragma warning disable CS1998
 
@@ -32,23 +31,23 @@ namespace SaintCoinach.Cmd.Commands
         /// </summary>
         /// <param name="paramList"></param>
         /// <returns></returns>
-        public override async Task<bool> InvokeAsync(string paramList)
+        public override void Invoke(string[] arguments)
         {
             var versionPath = _Realm.GameVersion;
-            if (paramList?.Contains("/UseDefinitionVersion") ?? false)
+            if (arguments?.Contains("/UseDefinitionVersion") ?? false)
                 versionPath = _Realm.DefinitionVersion;
 
-            AssignVariables(this, paramList);
+            AssignVariables(this, string.Join(" ", arguments));
 
             const string CsvFileFormat = "raw-exd-all/{0}{1}.csv";
 
             IEnumerable<string> filesToExport;
 
             // Gather files to export, may be split by params.
-            if (string.IsNullOrWhiteSpace(paramList))
+            if (arguments.Length == 0)
                 filesToExport = _Realm.GameData.AvailableSheets;
             else
-                filesToExport = paramList.Split(' ').Select(_ => _Realm.GameData.FixName(_));
+                filesToExport = arguments.Select(_ => _Realm.GameData.FixName(_));
 
             // Action counts
             var successCount = 0;
@@ -77,21 +76,20 @@ namespace SaintCoinach.Cmd.Commands
                             target.Directory.Create();
 
                         // Save
-                        OutputInformation("[{0}/{1}] Processing: {2} - Language: {3}", currentCount, total, name, lang.GetSuffix());
+                        OutputInformation("[{currentCount}/{total}] Processing: {name} - Language: {lang.GetSuffix(}");
                         ExdHelper.SaveAsCsv(sheet, lang, target.FullName, true);
                         ++successCount;
                     }
                     catch (Exception e)
                     {
-                        OutputError("Export of {0} failed: {1}", name, e.Message);
+                        OutputError($"Export of {name} failed: {e.Message}");
                         try { if (target.Exists) { target.Delete(); } } catch { }
                         ++failCount;
                     }
                 }
             }
-            OutputInformation("{0} files exported, {1} failed", successCount, failCount);
 
-            return true;
+            OutputInformation("{successCount} files exported, {1failCount} failed");
         }
     }
 }

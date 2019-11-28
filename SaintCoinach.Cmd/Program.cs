@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Tharga.Toolkit.Console;
-using Tharga.Toolkit.Console.Command;
-using Tharga.Toolkit.Console.Command.Base;
+using Tharga.Toolkit.Console.Commands;
+using Tharga.Toolkit.Console.Commands.Base;
+using Tharga.Toolkit.Console.Consoles;
 
 namespace SaintCoinach.Cmd {
     class ConsoleProgressReporter : IProgress<Ex.Relational.Update.UpdateProgress> {
@@ -22,7 +23,8 @@ namespace SaintCoinach.Cmd {
     }
     class Program {
         private static void Main(string[] args) {
-            var dataPath = Properties.Settings.Default.DataPath;
+            //var dataPath = Properties.Settings.Default.DataPath;
+            var dataPath = "";  
 
             if (args.Length > 0) {
                 dataPath = args[0];
@@ -54,12 +56,12 @@ namespace SaintCoinach.Cmd {
                     Console.WriteLine("Skipping update");
             }
 
-            var cns = new Tharga.Toolkit.Console.Command.Base.ClientConsole();
+            var cns = new ClientConsole();
             var cmd = new RootCommand(cns);
 
             Setup(cmd, realm);
 
-            (new CommandEngine(cmd)).Run(args);
+            (new CommandEngine(cmd)).Start(args);
         }
 
         static void Setup(RootCommand rootCmd, ARealmReversed realm) {

@@ -6,7 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tharga.Toolkit.Console.Command.Base;
+
+using Tharga.Toolkit.Console.Commands.Base;
 
 namespace SaintCoinach.Cmd.Commands {
     public class ExdHeaderCommand : ActionCommandBase {
@@ -18,7 +19,7 @@ namespace SaintCoinach.Cmd.Commands {
         }
 
         #pragma warning disable CS1998
-        public override async Task<bool> InvokeAsync(string paramList) {
+        public override void Invoke(string[] arguments) {
             var headers = new List<SheetHeader>();
             foreach (var name in _Realm.GameData.AvailableSheets) {
                 var header = new SheetHeader() { Name = name, Columns = new List<SheetColumn>() };
@@ -42,7 +43,6 @@ namespace SaintCoinach.Cmd.Commands {
 
             var json = JsonConvert.SerializeObject(headers, settings);
             File.WriteAllText(Path.Combine(_Realm.GameVersion, "exd-header.json"), json);
-            return true;
         }
 
         private class SheetHeader {
