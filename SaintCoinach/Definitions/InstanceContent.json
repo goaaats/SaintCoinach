@@ -1,6 +1,5 @@
 {
   "sheet": "InstanceContent",
-  "defaultColumn": "Name",
   "definitions": [
     {
       "name": "InstanceContentType",
@@ -48,6 +47,14 @@
     {
       "index": 9,
       "name": "Order"
+    },
+    {
+      "index": 10,
+      "name": "Colosseum",
+      "converter": {
+        "type": "link",
+        "target": "Colosseum"
+      }
     },
     {
       "index": 12,

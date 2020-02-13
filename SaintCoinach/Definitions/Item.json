@@ -181,7 +181,7 @@
     },
     {
       "index": 23,
-      "name": "IsEquippable"
+      "name": "Lot"
     },
     {
       "index": 24,
@@ -250,6 +250,10 @@
     {
       "index": 36,
       "name": "IsCollectable"
+    },
+    {
+      "index": 37,
+      "name": "AlwaysCollectable"
     },
     {
       "index": 38,

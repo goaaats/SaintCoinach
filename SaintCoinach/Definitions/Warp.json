@@ -3,7 +3,7 @@
   "isGenericReferenceTarget": true,
   "definitions": [
     {
-      "name": "Level",
+      "name": "PopRange",
       "converter": {
         "type": "link",
         "target": "Level"
@@ -56,6 +56,34 @@
         "type": "link",
         "target": "WarpLogic"
       }
+    },
+    {
+      "index": 7,
+      "name": "StartCutscene",
+      "converter": {
+        "type": "link",
+        "target": "Cutscene"
+      }
+    },
+    {
+      "index": 8,
+      "name": "EndCutscene",
+      "converter": {
+        "type": "link",
+        "target": "Cutscene"
+      }
+    },
+    {
+      "index": 9,
+      "name": "CanSkipCutscene"
+    },
+    {
+      "index": 10,
+      "name": "Name"
+    },
+    {
+      "index": 11,
+      "name": "Question"
     }
   ]
 }

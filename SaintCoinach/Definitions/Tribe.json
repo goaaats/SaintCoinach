@@ -10,16 +10,24 @@
       "name": "Feminine"
     },
     {
+      "index": 2,
+      "name": "Hp"
+    },
+    {
+      "index": 3,
+      "name": "Mp"
+    },
+    {
       "index": 4,
       "name": "STR"
     },
     {
       "index": 5,
-      "name": "DEX"
+      "name": "VIT"
     },
     {
       "index": 6,
-      "name": "VIT"
+      "name": "DEX"
     },
     {
       "index": 7,

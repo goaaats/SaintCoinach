@@ -2,6 +2,28 @@
   "sheet": "BattleLeve",
   "definitions": [
     {
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "Time"
+      }
+    },
+    {
+      "index": 8,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "BaseID",
+        "converter": {
+          "type": "multiref",
+          "targets": [
+            "EventItem",
+            "BNpcBase"
+          ]
+        }
+      }
+    },
+    {
       "index": 16,
       "type": "repeat",
       "count": 8,
@@ -47,6 +69,50 @@
       "count": 8,
       "definition": {
         "name": "ItemDropRate"
+      }
+    },
+    {
+      "index": 56,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ToDoNumberInvolved"
+      }
+    },
+    {
+      "index": 64,
+      "type": "repeat",
+      "count": 8,
+      "definition": {
+        "name": "ToDoParam"
+      }
+    },
+    {
+      "index": 176,
+      "name": "Rule",
+      "converter": {
+        "type": "link",
+        "target": "BattleLeveRule"
+      }
+    },
+    {
+      "index": 177,
+      "name": "Varient"
+    },
+    {
+      "index": 178,
+      "name": "Objective[0]",
+      "converter": {
+        "type": "link",
+        "target": "LeveString"
+      }
+    },
+    {
+      "index": 179,
+      "name": "Objective[1]",
+      "converter": {
+        "type": "link",
+        "target": "LeveString"
       }
     }
   ]
