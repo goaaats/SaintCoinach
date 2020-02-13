@@ -7,6 +7,8 @@ jobs:
     name: validate-json
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Install jsonlint
-        run: npm install jsonlint -g
-        
+        run: sudo npm install jsonlint -g
+      - name: Validate schemas
+        run: for f in $(find $GITHUB_WORKSPACE/SaintCoinach/Definitions/ -name *.json -print); do jsonlint $f; done
