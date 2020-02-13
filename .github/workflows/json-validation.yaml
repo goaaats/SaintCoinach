@@ -11,4 +11,4 @@ jobs:
       - name: Install jsonlint
         run: sudo npm install jsonlint -g
       - name: Validate schemas
-        run: for f in $(find $GITHUB_WORKSPACE/SaintCoinach/Definitions/ -name *.json -print); do jsonlint $f -q; done
+        run: set -e; for f in $(find SaintCoinach/Definitions/ -name *.json -print); do echo -n "$f - "; jsonlint $f -q; echo "OK!"; done
